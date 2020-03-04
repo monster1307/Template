@@ -6,8 +6,10 @@ import { History } from 'Helpers';
 import { Route, Switch } from 'react-router-dom';
 
 // Pages
+import Welcome from 'Pages/Welcome';
 import Page1 from 'Pages/Page1';
 import Page2 from 'Pages/Page2';
+import DualHeaderTable from 'Pages/DualHeaderTable';
 
 const useStyles = makeStyles({
   root: {
@@ -37,7 +39,8 @@ const useStyles = makeStyles({
 const paths = [
   "/",
   "/Page1",
-  "/Page2"
+  "/Page2",
+  "/DualHeaderTable"
 ];
 
 function App() {
@@ -83,14 +86,25 @@ function App() {
               >
               <ListItemText>Page 2</ListItemText>
             </ListItem>
+            <ListItem
+              button
+              onClick={() => {
+                setSelectedSideMenuIndex(3);
+                History.push("DualHeaderTable");
+                }}
+                selected={selectedSideMenuIndex === 3}
+              >
+              <ListItemText>Dual Header Table</ListItemText>
+            </ListItem>
           </List>
         </Paper>
         <div className={classes.mainContainer}>
           <Paper className={classes.pageContainer}>
             <Switch>
-              <Route exact path="/" component={Page2} />
+              <Route exact path="/" component={Welcome} />
               <Route path="/Page1" component={Page1} />
               <Route path="/Page2" component={Page2} />
+              <Route path="/DualHeaderTable" component={DualHeaderTable} />
             </Switch>
           </Paper>
         </div>
